@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        calcThawLength(getTempFromUser());
+        printResult(calcThawLength(getTempFromUser()));
     }
 
     public static int[] getTempFromUser() {
@@ -19,12 +20,17 @@ public class Main {
         return tempList;
     }
 
-    public static void calcThawLength(int[] tempList) {
+    public static int calcThawLength(int[] tempList) {
         int maxLength = 0;
         int count = 0;
-        for (int t : tempList) {
-            if (t > 0) {
+        for (int i = 0; i < tempList.length; i++) {
+            if (tempList[i] > 0) {
                 count++;
+                if (i == tempList.length - 1 && count > maxLength) {
+                    maxLength = count;
+                }
+
+
             } else {
                 if (count > maxLength) {
                     maxLength = count;
@@ -32,6 +38,12 @@ public class Main {
                 count = 0;
             }
         }
-        System.out.println("Количество дней самой продолжительной оттепели составило " + maxLength);
+        return maxLength;
+    }
+
+    public static void printResult(int result) {
+        System.out.println("Количество дней самой продолжительной оттепели составило " + result);
     }
 }
+
+
